@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2A284B14C9E9AD316D47C882 /* Pods_Georeminder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36F4EEB85B49D59A50A72282 /* Pods_Georeminder.framework */; };
 		8410EC7D1D2FE60A00FF8387 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8410EC7C1D2FE60A00FF8387 /* AppDelegate.swift */; };
 		8410EC7F1D2FE60A00FF8387 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8410EC7E1D2FE60A00FF8387 /* ViewController.swift */; };
 		8410EC821D2FE60A00FF8387 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8410EC801D2FE60A00FF8387 /* Main.storyboard */; };
@@ -16,6 +17,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0530C1B590123A645AD3F89C /* Pods-Georeminder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Georeminder.release.xcconfig"; path = "Pods/Target Support Files/Pods-Georeminder/Pods-Georeminder.release.xcconfig"; sourceTree = "<group>"; };
+		36F4EEB85B49D59A50A72282 /* Pods_Georeminder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Georeminder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8410EC791D2FE60A00FF8387 /* Georeminder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Georeminder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8410EC7C1D2FE60A00FF8387 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8410EC7E1D2FE60A00FF8387 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -24,6 +27,7 @@
 		8410EC861D2FE60A00FF8387 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8410EC891D2FE60A00FF8387 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8410EC8B1D2FE60A00FF8387 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		89CE8D6587271DB354CE7320 /* Pods-Georeminder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Georeminder.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Georeminder/Pods-Georeminder.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +35,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A284B14C9E9AD316D47C882 /* Pods_Georeminder.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		177F64C44CA81996CF3579CE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				36F4EEB85B49D59A50A72282 /* Pods_Georeminder.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		8410EC701D2FE60A00FF8387 = {
 			isa = PBXGroup;
 			children = (
 				8410EC7B1D2FE60A00FF8387 /* Georeminder */,
 				8410EC7A1D2FE60A00FF8387 /* Products */,
+				AC3DDF249D12B8D92537F78A /* Pods */,
+				177F64C44CA81996CF3579CE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -67,6 +82,15 @@
 			path = Georeminder;
 			sourceTree = "<group>";
 		};
+		AC3DDF249D12B8D92537F78A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				89CE8D6587271DB354CE7320 /* Pods-Georeminder.debug.xcconfig */,
+				0530C1B590123A645AD3F89C /* Pods-Georeminder.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -74,9 +98,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8410EC8E1D2FE60A00FF8387 /* Build configuration list for PBXNativeTarget "Georeminder" */;
 			buildPhases = (
+				3B6B1A740B48ADCB40A67CCC /* [CP] Check Pods Manifest.lock */,
 				8410EC751D2FE60A00FF8387 /* Sources */,
 				8410EC761D2FE60A00FF8387 /* Frameworks */,
 				8410EC771D2FE60A00FF8387 /* Resources */,
+				C95202AE4D15E4BE72C42817 /* [CP] Embed Pods Frameworks */,
+				4893613B464DAEC04A4FA8A9 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -132,6 +159,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3B6B1A740B48ADCB40A67CCC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		4893613B464DAEC04A4FA8A9 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Georeminder/Pods-Georeminder-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C95202AE4D15E4BE72C42817 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Georeminder/Pods-Georeminder-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8410EC751D2FE60A00FF8387 /* Sources */ = {
@@ -249,6 +324,7 @@
 		};
 		8410EC8F1D2FE60A00FF8387 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 89CE8D6587271DB354CE7320 /* Pods-Georeminder.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Georeminder/Info.plist;
@@ -260,6 +336,7 @@
 		};
 		8410EC901D2FE60A00FF8387 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0530C1B590123A645AD3F89C /* Pods-Georeminder.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Georeminder/Info.plist;
@@ -288,6 +365,7 @@
 				8410EC901D2FE60A00FF8387 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
