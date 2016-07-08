@@ -16,6 +16,7 @@
 		8410EC8A1D2FE60A00FF8387 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8410EC881D2FE60A00FF8387 /* LaunchScreen.storyboard */; };
 		84498EF51D301367007E2644 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 84498EF41D301367007E2644 /* icon.png */; };
 		84498EF71D30177E007E2644 /* AppIcon.appiconset in Resources */ = {isa = PBXBuildFile; fileRef = 84498EF61D30177E007E2644 /* AppIcon.appiconset */; };
+		84498EFA1D301DC7007E2644 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84498EF91D301DC7007E2644 /* RegistrationViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		8410EC8B1D2FE60A00FF8387 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84498EF41D301367007E2644 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		84498EF61D30177E007E2644 /* AppIcon.appiconset */ = {isa = PBXFileReference; lastKnownFileType = folder; path = AppIcon.appiconset; sourceTree = "<group>"; };
+		84498EF91D301DC7007E2644 /* RegistrationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		89CE8D6587271DB354CE7320 /* Pods-Georeminder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Georeminder.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Georeminder/Pods-Georeminder.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -75,6 +77,7 @@
 		8410EC7B1D2FE60A00FF8387 /* Georeminder */ = {
 			isa = PBXGroup;
 			children = (
+				84498EF81D301D21007E2644 /* LoginAndRegister */,
 				8410EC7C1D2FE60A00FF8387 /* AppDelegate.swift */,
 				8410EC7E1D2FE60A00FF8387 /* ViewController.swift */,
 				8410EC801D2FE60A00FF8387 /* Main.storyboard */,
@@ -86,6 +89,14 @@
 				8410EC831D2FE60A00FF8387 /* Georeminder.xcdatamodeld */,
 			);
 			path = Georeminder;
+			sourceTree = "<group>";
+		};
+		84498EF81D301D21007E2644 /* LoginAndRegister */ = {
+			isa = PBXGroup;
+			children = (
+				84498EF91D301DC7007E2644 /* RegistrationViewController.swift */,
+			);
+			name = LoginAndRegister;
 			sourceTree = "<group>";
 		};
 		AC3DDF249D12B8D92537F78A /* Pods */ = {
@@ -223,6 +234,7 @@
 			files = (
 				8410EC851D2FE60A00FF8387 /* Georeminder.xcdatamodeld in Sources */,
 				8410EC7F1D2FE60A00FF8387 /* ViewController.swift in Sources */,
+				84498EFA1D301DC7007E2644 /* RegistrationViewController.swift in Sources */,
 				8410EC7D1D2FE60A00FF8387 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

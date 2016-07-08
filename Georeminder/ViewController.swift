@@ -9,6 +9,7 @@
 import UIKit
 
 class ViewController: UIViewController {
+    var backendless = Backendless.sharedInstance()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +23,13 @@ class ViewController: UIViewController {
     
     
     override func viewDidAppear(animated: Bool) {
-        performSegueWithIdentifier("segueLogin", sender: self)
+        
+        let currentUser = backendless.userService.currentUser
+        
+        //check if user logged in, if no - redirect to login/register
+        if (currentUser == nil){
+            performSegueWithIdentifier("segueLogin", sender: self)
+        }
     }
 
 

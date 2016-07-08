@@ -17,8 +17,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Main" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YLj-Z9-Jl5">
-                                <rect key="frame" x="166" y="53" width="42" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Main" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YLj-Z9-Jl5">
+                                <rect key="frame" x="20" y="52" width="374" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -35,7 +35,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1096.5" y="426.5"/>
+            <point key="canvasLocation" x="1004" y="426"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="Ic4-3W-BZC">
@@ -49,6 +49,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Login" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MWi-wh-cQl">
+                                <rect key="frame" x="20" y="28" width="374" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Email:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6AW-3G-dbH">
                                 <rect key="frame" x="20" y="85" width="335" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -78,19 +84,13 @@
                                 <state key="normal" title="Login"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PSG-fa-IW5">
-                                <rect key="frame" x="20" y="323" width="374" height="35"/>
+                                <rect key="frame" x="20" y="325" width="374" height="35"/>
                                 <color key="tintColor" red="0.089815053749999998" green="0.2077076199" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Register"/>
                                 <connections>
                                     <segue destination="k4l-Jy-62N" kind="presentation" identifier="segueRegister" id="44M-9K-Jc3"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Login" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MWi-wh-cQl">
-                                <rect key="frame" x="20" y="28" width="374" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -100,10 +100,10 @@
             </objects>
             <point key="canvasLocation" x="1520" y="426"/>
         </scene>
-        <!--View Controller-->
+        <!--Registration View Controller-->
         <scene sceneID="NU5-02-TGn">
             <objects>
-                <viewController id="k4l-Jy-62N" sceneMemberID="viewController">
+                <viewController id="k4l-Jy-62N" customClass="RegistrationViewController" customModule="Georeminder" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Wj2-62-Ujg"/>
                         <viewControllerLayoutGuide type="bottom" id="Ivx-dx-xK5"/>
@@ -167,20 +167,34 @@
                                 <color key="backgroundColor" white="0.194929726" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="Register"/>
+                                <connections>
+                                    <action selector="RegisterButtoTapped:" destination="k4l-Jy-62N" eventType="touchUpInside" id="7BI-2l-rxP"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PgU-hr-X7o">
                                 <rect key="frame" x="20" y="434" width="374" height="35"/>
                                 <color key="tintColor" red="0.089815053749999998" green="0.2077076199" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="I already have and account, log me in"/>
+                                <connections>
+                                    <action selector="IHaveAlreadyHaveAnAccountButtonTapped:" destination="k4l-Jy-62N" eventType="touchUpInside" id="S5c-f1-e4h"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                    <connections>
+                        <outlet property="IAHAAButton" destination="PgU-hr-X7o" id="9pW-Rc-WT9"/>
+                        <outlet property="confirmPasswordTextField" destination="AVt-Lv-baL" id="s3h-Nj-qlf"/>
+                        <outlet property="registerButton" destination="Wvw-gU-K87" id="Duy-A1-812"/>
+                        <outlet property="userEmailTextField" destination="E6l-ga-B2F" id="aBd-XV-L6D"/>
+                        <outlet property="userNametextfield" destination="DBL-JA-6Ck" id="bRX-mA-dXp"/>
+                        <outlet property="userPasswordTextField" destination="TB8-wC-isF" id="vj0-1U-A5M"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F3P-km-Xnb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1951" y="426"/>
+            <point key="canvasLocation" x="2034" y="426"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="voh-fl-mvL">
@@ -198,7 +212,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OBV-D7-xNW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="563" y="393"/>
+            <point key="canvasLocation" x="377" y="393"/>
         </scene>
     </scenes>
 </document>
