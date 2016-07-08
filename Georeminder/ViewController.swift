@@ -11,6 +11,7 @@ import UIKit
 class ViewController: UIViewController {
     var backendless = Backendless.sharedInstance()
 
+    @IBOutlet weak var label: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -29,10 +30,23 @@ class ViewController: UIViewController {
         //check if user logged in, if no - redirect to login/register
         if (currentUser == nil){
             performSegueWithIdentifier("segueLogin", sender: self)
+        }else{
+            label.text = "hello, \(currentUser.name)"
         }
     }
 
 
+    @IBAction func logoutTapped(sender: AnyObject) {
+        backendless.userService.logout(
+            { ( user : AnyObject!) -> () in
+                print("User logged out.")
+                self.performSegueWithIdentifier("segueLogin", sender: self)
+                
+            },
+            error: { ( fault : Fault!) -> () in
+                print("Server reported an error: \(fault)")
+        })
+    }
     
 }
 

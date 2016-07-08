@@ -46,7 +46,7 @@ class RegistrationViewController: UIViewController {
             return
         }
         
-        if(!validateEmail(userEmail)){
+        if(!userEmail.validateEmail()){
             displayAlertMessage("Email is in incorrect format")
             return
         }
@@ -58,7 +58,7 @@ class RegistrationViewController: UIViewController {
             return
         }
         
-        //register
+        //register async
         toggleUI(false) // disable user interaction
         
         let user = BackendlessUser()
@@ -116,13 +116,6 @@ class RegistrationViewController: UIViewController {
         
     }
     
-    func validateEmail(enteredEmail:String) -> Bool {
-        
-        let emailFormat = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
-        let emailPredicate = NSPredicate(format:"SELF MATCHES %@", emailFormat)
-        return emailPredicate.evaluateWithObject(enteredEmail)
-        
-    }
     
     func toggleUI(enabled:Bool){
         userNametextfield.userInteractionEnabled = enabled
@@ -135,3 +128,14 @@ class RegistrationViewController: UIViewController {
 
     }
 }
+
+
+extension String{
+    func validateEmail() -> Bool {
+        
+        let emailFormat = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        let emailPredicate = NSPredicate(format:"SELF MATCHES %@", emailFormat)
+        return emailPredicate.evaluateWithObject(self)
+    }
+}
+

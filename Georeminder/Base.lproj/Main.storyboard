@@ -17,8 +17,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GAr-pb-Ug6">
+                                <rect key="frame" x="20" y="188" width="374" height="36"/>
+                                <color key="backgroundColor" red="0.60000002384185791" green="0.40000000596046448" blue="0.20000000298023224" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="Logout"/>
+                                <connections>
+                                    <action selector="logoutTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="N7K-dB-Lmm"/>
+                                </connections>
+                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Main" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YLj-Z9-Jl5">
-                                <rect key="frame" x="20" y="52" width="374" height="21"/>
+                                <rect key="frame" x="20" y="93" width="374" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -30,6 +39,7 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
+                        <outlet property="label" destination="YLj-Z9-Jl5" id="HB8-3E-84d"/>
                         <segue destination="xaP-0s-En3" kind="presentation" identifier="segueLogin" id="6NE-Mj-G2D"/>
                     </connections>
                 </viewController>
@@ -37,10 +47,10 @@
             </objects>
             <point key="canvasLocation" x="1004" y="426"/>
         </scene>
-        <!--View Controller-->
+        <!--Login View Controller-->
         <scene sceneID="Ic4-3W-BZC">
             <objects>
-                <viewController id="xaP-0s-En3" sceneMemberID="viewController">
+                <viewController id="xaP-0s-En3" customClass="LoginViewController" customModule="Georeminder" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="j6j-jJ-e0f"/>
                         <viewControllerLayoutGuide type="bottom" id="gd8-HR-NT6"/>
@@ -72,16 +82,14 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="type your password" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="asa-4Z-Fxu">
-                                <rect key="frame" x="20" y="195" width="374" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
-                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xaj-cQ-6XJ">
                                 <rect key="frame" x="20" y="260" width="374" height="40"/>
                                 <color key="backgroundColor" white="0.19492972595938321" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="Login"/>
+                                <connections>
+                                    <action selector="loginButtonTapped:" destination="xaP-0s-En3" eventType="touchUpInside" id="Ufe-j6-zLf"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PSG-fa-IW5">
                                 <rect key="frame" x="20" y="325" width="374" height="35"/>
@@ -91,10 +99,21 @@
                                     <segue destination="k4l-Jy-62N" kind="presentation" identifier="segueRegister" id="44M-9K-Jc3"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="type your password" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="asa-4Z-Fxu">
+                                <rect key="frame" x="20" y="195" width="374" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                    <connections>
+                        <outlet property="loginButton" destination="xaj-cQ-6XJ" id="aJO-5d-Y3n"/>
+                        <outlet property="registerButton" destination="PSG-fa-IW5" id="L5s-51-yUm"/>
+                        <outlet property="userEmailTextField" destination="NbQ-EY-g6q" id="xmk-8Y-llc"/>
+                        <outlet property="userPasswordTextField" destination="asa-4Z-Fxu" id="81j-62-iA1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S4F-wA-TCh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

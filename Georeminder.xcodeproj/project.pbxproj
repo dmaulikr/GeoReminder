@@ -17,6 +17,7 @@
 		84498EF51D301367007E2644 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 84498EF41D301367007E2644 /* icon.png */; };
 		84498EF71D30177E007E2644 /* AppIcon.appiconset in Resources */ = {isa = PBXBuildFile; fileRef = 84498EF61D30177E007E2644 /* AppIcon.appiconset */; };
 		84498EFA1D301DC7007E2644 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84498EF91D301DC7007E2644 /* RegistrationViewController.swift */; };
+		84498EFC1D302DAA007E2644 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84498EFB1D302DAA007E2644 /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		84498EF41D301367007E2644 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		84498EF61D30177E007E2644 /* AppIcon.appiconset */ = {isa = PBXFileReference; lastKnownFileType = folder; path = AppIcon.appiconset; sourceTree = "<group>"; };
 		84498EF91D301DC7007E2644 /* RegistrationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
+		84498EFB1D302DAA007E2644 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		89CE8D6587271DB354CE7320 /* Pods-Georeminder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Georeminder.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Georeminder/Pods-Georeminder.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -95,6 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				84498EF91D301DC7007E2644 /* RegistrationViewController.swift */,
+				84498EFB1D302DAA007E2644 /* LoginViewController.swift */,
 			);
 			name = LoginAndRegister;
 			sourceTree = "<group>";
@@ -235,6 +238,7 @@
 				8410EC851D2FE60A00FF8387 /* Georeminder.xcdatamodeld in Sources */,
 				8410EC7F1D2FE60A00FF8387 /* ViewController.swift in Sources */,
 				84498EFA1D301DC7007E2644 /* RegistrationViewController.swift in Sources */,
+				84498EFC1D302DAA007E2644 /* LoginViewController.swift in Sources */,
 				8410EC7D1D2FE60A00FF8387 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
