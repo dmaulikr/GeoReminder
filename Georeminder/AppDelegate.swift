@@ -16,13 +16,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let VERSION_NUM =   "v1"
     
     var backendless = Backendless.sharedInstance()
-
+    var coreLocationController: CoreLocationController?
     var window: UIWindow?
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         backendless.initApp(APP_ID, secret:SECRET_KEY, version:VERSION_NUM)
+        self.coreLocationController     = CoreLocationController()
         return true
     }
 
