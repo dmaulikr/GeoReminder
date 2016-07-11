@@ -32,11 +32,12 @@ class CoreLocationController: NSObject, CLLocationManagerDelegate  {
             
         case .Authorized:
             print(".Authorized")
-            self.locationManager.startUpdatingLocation()
+            self.locationManager.startUpdatingLocation()  // start tracking the location if authorized
             break
             
         case .Denied:
             print(".Denied")
+             self.locationManager.stopUpdatingLocation()  // stop tracking location if user denied the app to use locations
             break
             
         default:
