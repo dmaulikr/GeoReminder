@@ -56,4 +56,30 @@ class CoreLocationController: NSObject, CLLocationManagerDelegate  {
         
         
     }
+    
+    func locationManager(manager: CLLocationManager, monitoringDidFailForRegion region: CLRegion?, withError error: NSError) {
+        print("Monitoring failed for region with identifier: \(region!.identifier)")
+    }
+    
+    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+        print("Location Manager failed with the following error: \(error)")
+    }
+    
+    func locationManager(manager: CLLocationManager, didEnterRegion region: CLRegion) {
+        print("entered: \(region.identifier)")
+        
+        
+        let notification = UILocalNotification()
+        notification.alertBody = "Entered \(region.identifier)" // text that will be displayed in the notification
+        notification.alertAction = "open" // text that is displayed after "slide to..." on the lock screen - defaults to "slide to view"
+        notification.fireDate = NSDate()  // fired now
+        notification.soundName = UILocalNotificationDefaultSoundName // play default sound
+        notification.userInfo = ["title": "title", "UUID": "123"] // assign a unique identifier to the notification so that we can retrieve it later
+        
+        UIApplication.sharedApplication().scheduleLocalNotification(notification)
+    }
+    
+    func locationManager(manager: CLLocationManager, didExitRegion region: CLRegion) {
+        print("exited: \(region.identifier)")
+    }
 }

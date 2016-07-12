@@ -10,11 +10,14 @@ import UIKit
 
 class ViewController: UIViewController {
     var backendless = Backendless.sharedInstance()
-
+    var appDel = UIApplication.sharedApplication().delegate as! AppDelegate
+    var locationController: CoreLocationController!
+    
     @IBOutlet weak var label: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        locationController = appDel.coreLocationController!
     }
 
     override func didReceiveMemoryWarning() {
@@ -48,5 +51,12 @@ class ViewController: UIViewController {
         })
     }
     
+    @IBAction func SetLocationTapped(sender: AnyObject) {
+    
+        let coord = CLLocationCoordinate2D(latitude: -26.2041028, longitude: 28.0473051) // johannesbourg
+        let region = CLCircularRegion(center: coord, radius: 20, identifier: "Test")
+        locationController.locationManager.startMonitoringForRegion(region)
+        
+    }
 }
 
