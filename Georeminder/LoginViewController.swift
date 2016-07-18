@@ -19,9 +19,28 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+       
+    
     }
+    
+    override func viewDidAppear(animated: Bool) {
+        // erase all the info 
+        userEmailTextField.text=""
+        userPasswordTextField.text=""
+        
+        
+        let currentUser = backendless.userService.currentUser
+        
+        //check if user logged in, if no - redirect to login/register
+        if (currentUser == nil){
+            print("User hadn't logged in")
+        }else{
+            //label.text = "hello, \(currentUser.name)"
+            print("User \(currentUser.name) is logged in")
+            performSegueWithIdentifier("showRevealVC", sender: self)
+        }
+    }
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -61,7 +80,9 @@ class LoginViewController: UIViewController {
                 self.toggleUI(true)
                 
                 //close login, sucess
-                self.dismissViewControllerAnimated(true, completion:nil);
+                
+                self.performSegueWithIdentifier("showRevealVC", sender: self)///*******//
+
                 
             },
             error: { ( fault : Fault!) -> () in
@@ -82,6 +103,8 @@ class LoginViewController: UIViewController {
         
         
     }
+    
+    
     
     func displayAlertMessage(message: String){
         

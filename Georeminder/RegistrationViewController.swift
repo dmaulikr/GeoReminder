@@ -127,6 +127,10 @@ class RegistrationViewController: UIViewController {
 
 
     }
+    
+    override func viewDidDisappear(animated: Bool) {
+        print("Register view dissmissed")
+    }
 }
 
 
