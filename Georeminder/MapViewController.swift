@@ -132,10 +132,14 @@ class MapViewController : UIViewController , UIGestureRecognizerDelegate, MKMapV
     }
     
     func longPress(myPressPoint:UILongPressGestureRecognizer){
+        
         if (myPressPoint.state == UIGestureRecognizerState.Began){
         
         print("GESTURE Detected")
-          
+            
+            performSegueWithIdentifier("segueNewNot", sender: self)
+         
+            
         let touchLocation = myPressPoint.locationInView(mapView)
                 let locationCoordinate = mapView.convertPoint(touchLocation, toCoordinateFromView: mapView)
             
@@ -160,7 +164,7 @@ class MapViewController : UIViewController , UIGestureRecognizerDelegate, MKMapV
         
         
         }
-        
+               
         
     
     }
