@@ -14,12 +14,14 @@ class MapViewController : UIViewController , UIGestureRecognizerDelegate, MKMapV
     var backendless = Backendless.sharedInstance()
     var appDel = UIApplication.sharedApplication().delegate as! AppDelegate
     var locationController: CoreLocationController!
+    var newNotifications: [Notification] = []
+    var oldNotifications: [Notification] = []
   
     @IBOutlet weak var slider: UISlider!
     @IBOutlet weak var stepper: UIStepper!
     @IBOutlet weak var mapView: MKMapView!
     
-    
+
     
     
      override func viewDidLoad() {
@@ -28,38 +30,92 @@ class MapViewController : UIViewController , UIGestureRecognizerDelegate, MKMapV
         mapView.zoomEnabled = true
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         mapView.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: "longPress:"))
+   
+        retriveNotificationsByOwnerID()
         
     
     
+    
+           }
+    
+    
+    
+    
+    func retriveNotificationsByOwnerID() {
+        let n = backendless.userService.currentUser.getProperty("ownerId") as! String
+        let whereClause = "ownerId = '"+n+"'"
+        let dataQuery = BackendlessDataQuery()
+        dataQuery.whereClause = whereClause
+        
+        backendless.data.of(Notification.ofClass()).find(dataQuery,
+            response: { (result: BackendlessCollection!) -> Void in
+                //start block
+                
+                for b in result.data as! [Notification]{
+                    print (b.lat)
+                    if(b.isActive){
+                        self.drawCirclesOnTheMap(b)}
+                    
+                    // TODO: delete
+                    self.oldNotifications.append(b)
+                    
+                }
+                //end block
+            }, error: { (fault: Fault!) -> Void in
+                print("fServer reported an error: \(fault)")
+        })
+    }
+
+
+    
+    override func viewWillDisappear(animated: Bool) {
+        print("View Will Dissapear Called")
+        
+        storeNotificationsToBackEndless()
         
     }
     
-    /*override func viewDidAppear(animated: Bool) {
+    
+    
+    
+    func drawCirclesOnTheMap(b: Notification){
+    
+        let cord = CLLocationCoordinate2D(latitude: b.lat,longitude: b.lon)
+        let circle = MKCircle(centerCoordinate: cord, radius: 2000)
+        self.mapView.addOverlay(circle)
+        self.mapView.delegate = self
+    
+    
+    }
+    
+    
+    
+    
+    func storeNotificationsToBackEndless(){
         
-        let currentUser = backendless.userService.currentUser
         
-        //check if user logged in, if no - redirect to login/register
-        if (currentUser == nil){
-            performSegueWithIdentifier("segueLogin", sender: self)
-        }else{
-            //label.text = "hello, \(currentUser.name)"
-            print("User \(currentUser.name) is logged in")
+        let dataStore = backendless.data.of(Notification.ofClass())
+        
+        for note in newNotifications{
             
-            /*
-            backendless.userService.logout(
-                { ( user : AnyObject!) -> () in
-                    print("User logged out.")
-                    self.performSegueWithIdentifier("segueLogin", sender: self)
-                    
+            
+            dataStore.save(
+                note,
+                response: { (result: AnyObject!) -> Void in
+                    let obj = result as! Notification
+                    print("Contact has been saved: \(obj.notificationTitle)")
                 },
-                error: { ( fault : Fault!) -> () in
-                    print("Server reported an error: \(fault)")
-            })
-            */
-            
-            
-        }
-    }*/
+                error: { (fault: Fault!) -> Void in
+                    print("fServer reported an error: \(fault)")
+            })}
+
+    
+    
+    }
+    
+
+    
+    
 
     
     
@@ -79,16 +135,28 @@ class MapViewController : UIViewController , UIGestureRecognizerDelegate, MKMapV
         if (myPressPoint.state == UIGestureRecognizerState.Began){
         
         print("GESTURE Detected")
+          
         let touchLocation = myPressPoint.locationInView(mapView)
                 let locationCoordinate = mapView.convertPoint(touchLocation, toCoordinateFromView: mapView)
+            
+            //let not = Notification(Desc: "Press",Title: "Test",Rad: 2000,Act: true,Loc: locationCoordinate)
+            
             print("Tapped at lat: \(locationCoordinate.latitude) long: \(locationCoordinate.longitude)")
             let circle = MKCircle(centerCoordinate: locationCoordinate, radius: 2000)
             
-           // circle.radius
+           
             mapView.addOverlay(circle)
             
             
             mapView.delegate = self
+            
+            
+            //New notification created save to notification list
+            let notification = Notification(Desc: "MyTest1", Title: "2", Rad: 2000, Act: true, Lat :Double(locationCoordinate.latitude),Lon: Double(locationCoordinate.longitude))
+            newNotifications.append(notification)
+           
+            
+            
         
         
         }

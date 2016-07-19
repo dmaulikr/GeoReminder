@@ -81,5 +81,6 @@ class CoreLocationController: NSObject, CLLocationManagerDelegate  {
     
     func locationManager(manager: CLLocationManager, didExitRegion region: CLRegion) {
         print("exited: \(region.identifier)")
+       
     }
 }

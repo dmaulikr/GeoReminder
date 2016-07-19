@@ -22,6 +22,8 @@ class LogoutViewController: UIViewController {
             { ( user : AnyObject!) -> () in
                 print("User logged out.")
                 
+                // TODO stop tracking location and alerting*******************
+                
                 // close all views -> results in going back to Login
                 self.view.window!.rootViewController?.dismissViewControllerAnimated(true, completion: nil)
                 
