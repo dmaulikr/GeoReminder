@@ -64,6 +64,7 @@ class Notification : NSObject, NSCoding{
     }
     
     override init() {
+        self.id = NSUUID().UUIDString
         super.init()
         
     }

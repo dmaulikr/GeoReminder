@@ -20,6 +20,8 @@ class MapViewController : UIViewController , UIGestureRecognizerDelegate, MKMapV
     var newNote : Notification!
     var locationCoordinate : CLLocationCoordinate2D!
     var toSave = true
+
+    
     @IBOutlet weak var slider: UISlider!
     @IBOutlet weak var stepper: UIStepper!
     @IBOutlet weak var mapView: MKMapView!
@@ -29,6 +31,7 @@ class MapViewController : UIViewController , UIGestureRecognizerDelegate, MKMapV
    
     override func viewDidLoad() {
         newNote = Notification()
+        locationController = appDel.coreLocationController!
         super.viewDidLoad()
         print("MapViewController loaded")
         mapView.mapType = MKMapType.Hybrid
@@ -36,7 +39,13 @@ class MapViewController : UIViewController , UIGestureRecognizerDelegate, MKMapV
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         mapView.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: "longPress:"))
    
+    
         retriveNotificationsByOwnerID()
+        debugViewAllTrackedLocations()
+//        let regions = locationController.locationManager.monitoredRegions as! Set<CLCircularRegion>
+//        for r in regions{
+//            locationController.locationManager.stopMonitoringForRegion(r)
+//        }
         
     }
     
@@ -93,23 +102,10 @@ class MapViewController : UIViewController , UIGestureRecognizerDelegate, MKMapV
         
         // save array of notifications locally
         
-        Notification.saveNotificationsToUserDefaults(oldNotifications)
-        print("Notifications stored locally")
 
     }
    
-    override func viewWillDisappear(animated: Bool) {
-//        print("View Will Dissapear Called")
-//        
-//        storeNotificationsToBackEndless()
-//        
-//        // save array of notifications locally
-//        
-//        Notification.saveNotificationsToUserDefaults(oldNotifications)
-//        print("Notifications stored locally")
-
-        
-    }
+    
     
     
     
@@ -204,15 +200,31 @@ class MapViewController : UIViewController , UIGestureRecognizerDelegate, MKMapV
     
     }
     
+    func debugViewAllTrackedLocations(){
+        let regions = locationController.locationManager.monitoredRegions as! Set<CLCircularRegion>
+        for r in regions{
+            print("region monitored: \(r.identifier)")
+        }
+    }
+    
     func saveNotification(notification: Notification) {
         newNote = notification
         newNotifications.append(newNote)
         let circle = MKCircle(centerCoordinate: locationCoordinate, radius: Double(newNote.notificationRadius))
         mapView.addOverlay(circle)
         mapView.delegate = self
+        registerNotificationForTracking(newNote)    //register for track
+        saveNotificationsLocally()
         storeNotificationsToBackEndless()
+        
         print(newNote.notificationRadius)
         
+    }
+    
+    func saveNotificationsLocally(){
+        oldNotifications.appendContentsOf(newNotifications)
+        Notification.saveNotificationsToUserDefaults(oldNotifications)
+        print("Notifications stored locally")
     }
     
     func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
@@ -224,6 +236,14 @@ class MapViewController : UIViewController , UIGestureRecognizerDelegate, MKMapV
             return circleRenderer
         }
         return MKOverlayRenderer(overlay: overlay)
+    }
+    
+    func registerNotificationForTracking(ntf: Notification){
+        print("tracking for id: \(ntf.id)")
+        let center = CLLocationCoordinate2DMake(ntf.lat, ntf.lon)
+        let region = CLCircularRegion(center: center, radius: CLLocationDistance( ntf.notificationRadius), identifier: ntf.id)
+        
+        locationController.locationManager.startMonitoringForRegion(region)
     }
     
     

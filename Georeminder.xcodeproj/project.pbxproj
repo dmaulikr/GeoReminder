@@ -27,6 +27,9 @@
 		847AC2951D3D55D300945705 /* logout-512.png in Resources */ = {isa = PBXBuildFile; fileRef = 847AC2921D3D55D300945705 /* logout-512.png */; };
 		847AC2961D3D55D300945705 /* images-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 847AC2931D3D55D300945705 /* images-1.png */; };
 		847AC2971D3D55D300945705 /* map.png in Resources */ = {isa = PBXBuildFile; fileRef = 847AC2941D3D55D300945705 /* map.png */; };
+		84B62E1D1D3FC0840035B40B /* afeka1.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 84B62E1C1D3FC0840035B40B /* afeka1.gpx */; };
+		84B62E1F1D3FC0AF0035B40B /* afeka2.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 84B62E1E1D3FC0AF0035B40B /* afeka2.gpx */; };
+		84B62E211D3FC0D50035B40B /* afeka3.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 84B62E201D3FC0D50035B40B /* afeka3.gpx */; };
 		84C76F791D3F97C5009C36CC /* NotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C76F771D3F97C5009C36CC /* NotificationTableViewCell.swift */; };
 		84C76F7A1D3F97C5009C36CC /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C76F781D3F97C5009C36CC /* NotificationViewController.swift */; };
 		84C76F7C1D3FA374009C36CC /* NotificationControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C76F7B1D3FA374009C36CC /* NotificationControllerDelegate.swift */; };
@@ -60,6 +63,9 @@
 		847AC2921D3D55D300945705 /* logout-512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logout-512.png"; sourceTree = "<group>"; };
 		847AC2931D3D55D300945705 /* images-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "images-1.png"; sourceTree = "<group>"; };
 		847AC2941D3D55D300945705 /* map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map.png; sourceTree = "<group>"; };
+		84B62E1C1D3FC0840035B40B /* afeka1.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = afeka1.gpx; sourceTree = "<group>"; };
+		84B62E1E1D3FC0AF0035B40B /* afeka2.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = afeka2.gpx; sourceTree = "<group>"; };
+		84B62E201D3FC0D50035B40B /* afeka3.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = afeka3.gpx; sourceTree = "<group>"; };
 		84C76F771D3F97C5009C36CC /* NotificationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationTableViewCell.swift; sourceTree = "<group>"; };
 		84C76F781D3F97C5009C36CC /* NotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		84C76F7B1D3FA374009C36CC /* NotificationControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationControllerDelegate.swift; sourceTree = "<group>"; };
@@ -124,6 +130,9 @@
 				84498EF61D30177E007E2644 /* AppIcon.appiconset */,
 				8410EC861D2FE60A00FF8387 /* Assets.xcassets */,
 				84498EF41D301367007E2644 /* icon.png */,
+				84B62E1C1D3FC0840035B40B /* afeka1.gpx */,
+				84B62E1E1D3FC0AF0035B40B /* afeka2.gpx */,
+				84B62E201D3FC0D50035B40B /* afeka3.gpx */,
 				8410EC881D2FE60A00FF8387 /* LaunchScreen.storyboard */,
 				8410EC8B1D2FE60A00FF8387 /* Info.plist */,
 				8410EC831D2FE60A00FF8387 /* Georeminder.xcdatamodeld */,
@@ -242,9 +251,12 @@
 				847AC2971D3D55D300945705 /* map.png in Resources */,
 				84498EF51D301367007E2644 /* icon.png in Resources */,
 				8410EC8A1D2FE60A00FF8387 /* LaunchScreen.storyboard in Resources */,
+				84B62E1F1D3FC0AF0035B40B /* afeka2.gpx in Resources */,
+				84B62E211D3FC0D50035B40B /* afeka3.gpx in Resources */,
 				847AC2961D3D55D300945705 /* images-1.png in Resources */,
 				8410EC871D2FE60A00FF8387 /* Assets.xcassets in Resources */,
 				84498EF71D30177E007E2644 /* AppIcon.appiconset in Resources */,
+				84B62E1D1D3FC0840035B40B /* afeka1.gpx in Resources */,
 				847AC2951D3D55D300945705 /* logout-512.png in Resources */,
 				8410EC821D2FE60A00FF8387 /* Main.storyboard in Resources */,
 			);

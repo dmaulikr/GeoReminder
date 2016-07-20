@@ -16,7 +16,7 @@ class CoreLocationController: NSObject, CLLocationManagerDelegate  {
         super.init()
         self.locationManager.delegate = self
         self.locationManager.distanceFilter  = 5 // Must move at least 5m
-        self.locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
         
         self.locationManager.requestAlwaysAuthorization()
     }
@@ -67,14 +67,22 @@ class CoreLocationController: NSObject, CLLocationManagerDelegate  {
     
     func locationManager(manager: CLLocationManager, didEnterRegion region: CLRegion) {
         print("entered: \(region.identifier)")
+        var ntf:Notification!
+        let notifications = Notification.loadNotificationsFromUserDefaults()
+        for n in notifications!{
+            if n.id == region.identifier{
+                ntf = n
+                break
+            }
+        }
         
         
         let notification = UILocalNotification()
-        notification.alertBody = "Entered \(region.identifier)" // text that will be displayed in the notification
-        notification.alertAction = "open" // text that is displayed after "slide to..." on the lock screen - defaults to "slide to view"
+        notification.alertBody = "\(ntf.notificationDescription)" // text that will be displayed in the notification
+        notification.alertAction = "view" // text that is displayed after "slide to..." on the lock screen - defaults to "slide to view"
         notification.fireDate = NSDate()  // fired now
         notification.soundName = UILocalNotificationDefaultSoundName // play default sound
-        notification.userInfo = ["title": "title", "UUID": "123"] // assign a unique identifier to the notification so that we can retrieve it later
+        notification.userInfo = ["title": ntf.notificationTitle!, "UUID": ntf.id] // assign a unique identifier to the notification so that we can retrieve it later
         
         UIApplication.sharedApplication().scheduleLocalNotification(notification)
     }
