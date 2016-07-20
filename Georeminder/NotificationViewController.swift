@@ -22,12 +22,14 @@ class NotificationViewController: UITableViewController {
         print("NotificationsViewController  Loaded")
         locationController = appDel.coreLocationController!
         
+        
+        //add gesture recognizer
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
     }
     
     override func viewWillAppear(animated: Bool) {
         activityIndicatorLarge.startAnimating()
-    retriveNotificationsByOwnerID()
+        retriveNotificationsByOwnerID()
         activityIndicatorLarge.stopAnimating()
         activityIndicatorLarge.hidesWhenStopped = true
         activityView.hidden = true
@@ -35,7 +37,7 @@ class NotificationViewController: UITableViewController {
     
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-     let cell = tableView.dequeueReusableCellWithIdentifier("NotificationCell", forIndexPath: indexPath) as! NotificationTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("NotificationCell", forIndexPath: indexPath) as! NotificationTableViewCell
         
         cell.statusSwitch.on = oldNotifications[indexPath.row].isActive
         cell.titleLable.text = oldNotifications[indexPath.row].notificationTitle
@@ -49,11 +51,13 @@ class NotificationViewController: UITableViewController {
         return cell
     }
     
+    
+    //action function
     func SwitchChanged(sender: UISwitch){
         
         
         print(sender.tag)
-       let cell =  tableView.cellForRowAtIndexPath(NSIndexPath(forRow: sender.tag, inSection: 0)) as! NotificationTableViewCell
+        let cell =  tableView.cellForRowAtIndexPath(NSIndexPath(forRow: sender.tag, inSection: 0)) as! NotificationTableViewCell
         
         
         cell.statusLable.text = cell.statusSwitch.on ? "Active" : "InActive"
@@ -75,6 +79,8 @@ class NotificationViewController: UITableViewController {
         }
         
     }
+    
+    //register new notification
     func registerNotificationForTracking(ntf: Notification){
         print("tracking for id: \(ntf.id)")
         let center = CLLocationCoordinate2DMake(ntf.lat, ntf.lon)
@@ -97,6 +103,8 @@ class NotificationViewController: UITableViewController {
     }
     
     
+    
+    //load notifications.
     func retriveNotificationsByOwnerID() {
         let n = backendless.userService.currentUser.getProperty("ownerId") as! String
         let whereClause = "ownerId = '"+n+"'"
@@ -111,16 +119,16 @@ class NotificationViewController: UITableViewController {
         else {
             print("Server reported an error: \(error)")
         }
-    
-    
-    for b in bc.data as! [Notification]{
-    
-        oldNotifications.append(b)
-    }
+        
+        
+        for b in bc.data as! [Notification]{
+            
+            oldNotifications.append(b)
+        }
         
     }
     
     
-
-
+    
+    
 }

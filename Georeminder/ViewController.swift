@@ -20,7 +20,7 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         locationController = appDel.coreLocationController!
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -38,8 +38,8 @@ class ViewController: UIViewController {
             label.text = "hello, \(currentUser.name)"
         }
     }
-
-
+    
+    
     @IBAction func logoutTapped(sender: AnyObject) {
         backendless.userService.logout(
             { ( user : AnyObject!) -> () in
@@ -53,7 +53,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func SetLocationTapped(sender: AnyObject) {
-    
+        
         let coord = CLLocationCoordinate2D(latitude: -26.2041028, longitude: 28.0473051) // johannesbourg
         let region = CLCircularRegion(center: coord, radius: 20, identifier: "Test")
         locationController.locationManager.startMonitoringForRegion(region)

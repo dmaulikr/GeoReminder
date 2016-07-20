@@ -19,7 +19,7 @@ class NewNotificationViewController: UIViewController {
     var delegate : NotificationControllerDelegate?
     
     var notification : Notification?
-   
+    
     
     override func viewDidLoad() {
         Slider.maximumValue = 1000
@@ -28,17 +28,21 @@ class NewNotificationViewController: UIViewController {
         
     }
     
+    //check if value changed
     @IBAction func sliderValueChanged(sender: UISlider) {
         
         RadiusLable.text = "\(Int(sender.value)) m"
         notification?.notificationRadius = Int(sender.value)
     }
-
+    
+    //notification canceled
     @IBAction func cancelButtonPressed(sender: UIButton) {
         
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
+    
+    //create new notification and send callback
     @IBAction func createButtonPressed(sender: UIButton) {
         
         notification?.notificationTitle = TitleText.text

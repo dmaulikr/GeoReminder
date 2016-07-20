@@ -8,6 +8,8 @@
 
 import Foundation
 
+
+//protocol for callback implement
 protocol NotificationControllerDelegate
 {
     func saveNotification(var notification : Notification)

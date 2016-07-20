@@ -22,6 +22,6 @@ class NotificationTableViewCell: UITableViewCell {
 
     @IBAction func statusSwitchChanged(sender: UISwitch) {
         
-        
+         //for testing purposes only
     }
 }

@@ -22,7 +22,7 @@ class Notification : NSObject, NSCoding{
     var lon: Double = 0.0
     
     
-   
+    
     
     // MARK: - Conform to NSCoding
     func encodeWithCoder(aCoder: NSCoder) {
@@ -36,7 +36,7 @@ class Notification : NSObject, NSCoding{
         aCoder.encodeObject(lon, forKey: "keylon")
         
     }
-
+    
     
     
     init ( Desc : String, Title : String, Rad : Int, Act: Bool, Lat: Double, Lon: Double){
@@ -48,7 +48,7 @@ class Notification : NSObject, NSCoding{
         self.lat = Lat
         self.lon = Lon
         
-    super.init()
+        super.init()
     }
     
     init ( id: String,Desc : String, Title : String, Rad : Int, Act: Bool, Lat: Double, Lon: Double){
@@ -134,7 +134,7 @@ class Notification : NSObject, NSCoding{
         
         return loadedNotificationsFromUserDefault
     }
-
+    
     
     
 }

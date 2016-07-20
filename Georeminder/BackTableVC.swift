@@ -9,9 +9,9 @@
 import Foundation
 
 class BackTableVC: UITableViewController{
-
+    
     var TableArray = [String]()
-     var imageArray = [String]()
+    var imageArray = [String]()
     
     override func viewDidLoad() {
         print("BackTableVC  Loaded")
@@ -38,5 +38,5 @@ class BackTableVC: UITableViewController{
     }
     
     
-
+    
 }

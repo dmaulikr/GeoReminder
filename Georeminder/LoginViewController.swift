@@ -11,7 +11,7 @@ import UIKit
 class LoginViewController: UIViewController {
     
     let backendless = Backendless.sharedInstance()
-
+    
     @IBOutlet weak var userEmailTextField: UITextField!
     @IBOutlet weak var userPasswordTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
@@ -19,12 +19,12 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
-    
+        
+        
     }
     
     override func viewDidAppear(animated: Bool) {
-        // erase all the info 
+        // erase all the info
         userEmailTextField.text=""
         userPasswordTextField.text=""
         
@@ -40,14 +40,14 @@ class LoginViewController: UIViewController {
             performSegueWithIdentifier("showRevealVC", sender: self)
         }
     }
-
-
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-
+    
     
     @IBAction func loginButtonTapped(sender: AnyObject) {
         let userEmail = userEmailTextField.text!
@@ -82,7 +82,7 @@ class LoginViewController: UIViewController {
                 //close login, sucess
                 
                 self.performSegueWithIdentifier("showRevealVC", sender: self)///*******//
-
+                
                 
             },
             error: { ( fault : Fault!) -> () in
@@ -126,6 +126,6 @@ class LoginViewController: UIViewController {
         
         
     }
-
-
+    
+    
 }

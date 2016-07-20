@@ -9,7 +9,7 @@
 import UIKit
 
 class RegistrationViewController: UIViewController {
-
+    
     @IBOutlet weak var userNametextfield: UITextField!
     @IBOutlet weak var userEmailTextField: UITextField!
     @IBOutlet weak var userPasswordTextField: UITextField!
@@ -21,16 +21,16 @@ class RegistrationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-
+    
     
     @IBAction func RegisterButtoTapped(sender: AnyObject) {
         let userName = userNametextfield.text!
@@ -86,11 +86,11 @@ class RegistrationViewController: UIViewController {
             error: { ( fault : Fault!) -> () in
                 print("Server reported an error: \(fault)")
                 if(fault.faultCode == "3033"){
-                     self.displayAlertMessage("User with such email already exists");
+                    self.displayAlertMessage("User with such email already exists");
                 }else{
-                     self.displayAlertMessage("\(fault)");
+                    self.displayAlertMessage("\(fault)");
                 }
-               
+                
                 self.toggleUI(true) // enable user interaction
             }
         )
@@ -98,7 +98,7 @@ class RegistrationViewController: UIViewController {
         
         
     }
-
+    
     @IBAction func IHaveAlreadyHaveAnAccountButtonTapped(sender: AnyObject) {
         // close registration view
         self.dismissViewControllerAnimated(true, completion:nil);
@@ -124,8 +124,8 @@ class RegistrationViewController: UIViewController {
         confirmPasswordTextField.userInteractionEnabled = enabled
         registerButton.userInteractionEnabled = enabled
         IAHAAButton.userInteractionEnabled = enabled
-
-
+        
+        
     }
     
     override func viewDidDisappear(animated: Bool) {

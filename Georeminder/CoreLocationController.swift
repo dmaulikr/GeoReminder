@@ -37,7 +37,7 @@ class CoreLocationController: NSObject, CLLocationManagerDelegate  {
             
         case .Denied:
             print(".Denied")
-             self.locationManager.stopUpdatingLocation()  // stop tracking location if user denied the app to use locations
+            self.locationManager.stopUpdatingLocation()  // stop tracking location if user denied the app to use locations
             break
             
         default:
@@ -92,6 +92,6 @@ class CoreLocationController: NSObject, CLLocationManagerDelegate  {
     
     func locationManager(manager: CLLocationManager, didExitRegion region: CLRegion) {
         print("exited: \(region.identifier)")
-       
+        
     }
 }
