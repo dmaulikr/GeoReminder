@@ -105,7 +105,6 @@ class NotificationViewController: UITableViewController {
     }
     
     
-    
     //load notifications.
     func retriveNotificationsByOwnerID() {
         let n = backendless.userService.currentUser.getProperty("ownerId") as! String
