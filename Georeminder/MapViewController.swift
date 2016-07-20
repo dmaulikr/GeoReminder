@@ -35,6 +35,19 @@ class MapViewController : UIViewController , UIGestureRecognizerDelegate, MKMapV
         
     }
     
+   /*override func viewDidAppear(animated: Bool) {
+    super.viewDidAppear(animated)
+        print ("** viewDidAppear called **")
+        if let nots = Notification.loadNotificationsFromUserDefaults(){
+            print ("loaded notifs from WillAppear")
+            for n in nots{
+                 self.drawCirclesOnTheMap(n)
+                
+            }
+        }
+    
+    }*/
+    
     
     
     
@@ -51,17 +64,14 @@ class MapViewController : UIViewController , UIGestureRecognizerDelegate, MKMapV
                 for ntf in result.data as! [Notification]{
                     print (ntf.lat)
                     if(ntf.isActive){
-                        self.drawCirclesOnTheMap(ntf)}
+                        self.drawCirclesOnTheMap(ntf)
+                    }
                     
-                    // TODO: delete
+                   
                     self.oldNotifications.append(ntf)
                     
                 }
                 
-                // save array of notifications locally
-                let nots = result.data as! [Notification]
-                Notification.saveNotificationsToUserDefaults(nots)
-                print("Notifications stored locally")
                 
                 //end block
             }, error: { (fault: Fault!) -> Void in
@@ -75,6 +85,12 @@ class MapViewController : UIViewController , UIGestureRecognizerDelegate, MKMapV
         print("View Will Dissapear Called")
         
         storeNotificationsToBackEndless()
+        
+        // save array of notifications locally
+        
+        Notification.saveNotificationsToUserDefaults(oldNotifications)
+        print("Notifications stored locally")
+
         
     }
     
@@ -102,7 +118,7 @@ class MapViewController : UIViewController , UIGestureRecognizerDelegate, MKMapV
                 note,
                 response: { (result: AnyObject!) -> Void in
                     let obj = result as! Notification
-                    print("Contact has been saved: \(obj.notificationTitle)")
+                    print("Notification has been saved: \(obj.notificationTitle)")
                 },
                 error: { (fault: Fault!) -> Void in
                     print("fServer reported an error: \(fault)")
@@ -111,18 +127,10 @@ class MapViewController : UIViewController , UIGestureRecognizerDelegate, MKMapV
     
     
     }
-    
-
-    
-    
-
-    
-    
-    @IBAction func sliderValueChanged(sender: UISlider) {
+      @IBAction func sliderValueChanged(sender: UISlider) {
         
         
     }
-    
     
     @IBAction func stepperValueChanged(sender: UIStepper) {
         

@@ -17,7 +17,7 @@ class NotificationsViewController : UIViewController {
         //test
         if let nots = Notification.loadNotificationsFromUserDefaults(){
             for n in nots{
-                    print("\(n.lat)")
+                    print("\(n.lat) \(n.lon) \(n.id) \(n.notificationTitle) \(n.notificationRadius) \(n.notificationDescription)")
         
             }
         }
