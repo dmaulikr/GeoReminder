@@ -14,7 +14,14 @@ class NotificationsViewController : UIViewController {
     override func viewDidLoad() {
         print("NotificationsViewController  Loaded")
        
-
+        //test
+        if let nots = Notification.loadNotificationsFromUserDefaults(){
+            for n in nots{
+                    print("\(n.lat)")
+        
+            }
+        }
+        //-test
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
     }
     

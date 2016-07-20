@@ -33,10 +33,7 @@ class MapViewController : UIViewController , UIGestureRecognizerDelegate, MKMapV
    
         retriveNotificationsByOwnerID()
         
-    
-    
-    
-           }
+    }
     
     
     
@@ -51,15 +48,21 @@ class MapViewController : UIViewController , UIGestureRecognizerDelegate, MKMapV
             response: { (result: BackendlessCollection!) -> Void in
                 //start block
                 
-                for b in result.data as! [Notification]{
-                    print (b.lat)
-                    if(b.isActive){
-                        self.drawCirclesOnTheMap(b)}
+                for ntf in result.data as! [Notification]{
+                    print (ntf.lat)
+                    if(ntf.isActive){
+                        self.drawCirclesOnTheMap(ntf)}
                     
                     // TODO: delete
-                    self.oldNotifications.append(b)
+                    self.oldNotifications.append(ntf)
                     
                 }
+                
+                // save array of notifications locally
+                let nots = result.data as! [Notification]
+                Notification.saveNotificationsToUserDefaults(nots)
+                print("Notifications stored locally")
+                
                 //end block
             }, error: { (fault: Fault!) -> Void in
                 print("fServer reported an error: \(fault)")
@@ -78,13 +81,12 @@ class MapViewController : UIViewController , UIGestureRecognizerDelegate, MKMapV
     
     
     
-    func drawCirclesOnTheMap(b: Notification){
+    func drawCirclesOnTheMap(ntf: Notification){
     
-        let cord = CLLocationCoordinate2D(latitude: b.lat,longitude: b.lon)
-        let circle = MKCircle(centerCoordinate: cord, radius: 2000)
+        let cord = CLLocationCoordinate2D(latitude: ntf.lat,longitude: ntf.lon)
+        let circle = MKCircle(centerCoordinate: cord, radius: Double(ntf.notificationRadius) )
         self.mapView.addOverlay(circle)
         self.mapView.delegate = self
-    
     
     }
     
@@ -92,12 +94,9 @@ class MapViewController : UIViewController , UIGestureRecognizerDelegate, MKMapV
     
     
     func storeNotificationsToBackEndless(){
-        
-        
         let dataStore = backendless.data.of(Notification.ofClass())
         
         for note in newNotifications{
-            
             
             dataStore.save(
                 note,
@@ -135,30 +134,26 @@ class MapViewController : UIViewController , UIGestureRecognizerDelegate, MKMapV
         
         if (myPressPoint.state == UIGestureRecognizerState.Began){
         
-        print("GESTURE Detected")
-            
+            print("GESTURE Detected")
             performSegueWithIdentifier("segueNewNot", sender: self)
-         
             
-        let touchLocation = myPressPoint.locationInView(mapView)
-                let locationCoordinate = mapView.convertPoint(touchLocation, toCoordinateFromView: mapView)
+            let touchLocation = myPressPoint.locationInView(mapView)
+            let locationCoordinate = mapView.convertPoint(touchLocation, toCoordinateFromView: mapView)
             
             //let not = Notification(Desc: "Press",Title: "Test",Rad: 2000,Act: true,Loc: locationCoordinate)
             
             print("Tapped at lat: \(locationCoordinate.latitude) long: \(locationCoordinate.longitude)")
-            let circle = MKCircle(centerCoordinate: locationCoordinate, radius: 2000)
-            
-           
-            mapView.addOverlay(circle)
-            
-            
-            mapView.delegate = self
             
             
             //New notification created save to notification list
             let notification = Notification(Desc: "MyTest1", Title: "2", Rad: 2000, Act: true, Lat :Double(locationCoordinate.latitude),Lon: Double(locationCoordinate.longitude))
             newNotifications.append(notification)
-           
+            
+            // TODO: fix?
+            let circle = MKCircle(centerCoordinate: locationCoordinate, radius: Double(notification.notificationRadius))
+            mapView.addOverlay(circle)
+            mapView.delegate = self
+
             
             
         
