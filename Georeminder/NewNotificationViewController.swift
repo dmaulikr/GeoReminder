@@ -16,14 +16,22 @@ class NewNotificationViewController: UIViewController {
     @IBOutlet weak var RadiusLable: UILabel!
     @IBOutlet weak var CreateButton: UIButton!
     @IBOutlet weak var Cancel: UIButton!
+    var delegate : NotificationControllerDelegate?
+    
+    var notification : Notification?
    
     
     override func viewDidLoad() {
+        Slider.maximumValue = 1000
+        Slider.minimumValue = 10
         
         
     }
     
     @IBAction func sliderValueChanged(sender: UISlider) {
+        
+        RadiusLable.text = "\(Int(sender.value)) m"
+        notification?.notificationRadius = Int(sender.value)
     }
 
     @IBAction func cancelButtonPressed(sender: UIButton) {
@@ -33,7 +41,18 @@ class NewNotificationViewController: UIViewController {
     
     @IBAction func createButtonPressed(sender: UIButton) {
         
-        self.dismissViewControllerAnimated(true, completion: nil)
+        notification?.notificationTitle = TitleText.text
+        notification?.notificationDescription = DescripText.text
+        
+        
+        if((self.delegate) != nil)
+        {
+            
+            delegate?.saveNotification(notification!)
+            self.dismissViewControllerAnimated(true, completion: nil)
+        }
+        
+        
     }
     
 }

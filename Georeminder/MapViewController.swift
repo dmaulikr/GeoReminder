@@ -10,21 +10,26 @@ import Foundation
 import MapKit
 import CoreLocation
 
-class MapViewController : UIViewController , UIGestureRecognizerDelegate, MKMapViewDelegate{
+class MapViewController : UIViewController , UIGestureRecognizerDelegate, MKMapViewDelegate, NotificationControllerDelegate , UIPopoverPresentationControllerDelegate {
+    
     var backendless = Backendless.sharedInstance()
     var appDel = UIApplication.sharedApplication().delegate as! AppDelegate
     var locationController: CoreLocationController!
     var newNotifications: [Notification] = []
     var oldNotifications: [Notification] = []
-  
+    var newNote : Notification!
+    var locationCoordinate : CLLocationCoordinate2D!
+    var toSave = true
     @IBOutlet weak var slider: UISlider!
     @IBOutlet weak var stepper: UIStepper!
     @IBOutlet weak var mapView: MKMapView!
     
 
     
-    
-     override func viewDidLoad() {
+   
+    override func viewDidLoad() {
+        newNote = Notification()
+        super.viewDidLoad()
         print("MapViewController loaded")
         mapView.mapType = MKMapType.Hybrid
         mapView.zoomEnabled = true
@@ -80,16 +85,28 @@ class MapViewController : UIViewController , UIGestureRecognizerDelegate, MKMapV
     }
 
 
-    
-    override func viewWillDisappear(animated: Bool) {
+    override func viewDidDisappear(animated: Bool) {
         print("View Will Dissapear Called")
-        
-        storeNotificationsToBackEndless()
+        print(toSave)
+        if(toSave){
+            }
         
         // save array of notifications locally
         
         Notification.saveNotificationsToUserDefaults(oldNotifications)
         print("Notifications stored locally")
+
+    }
+   
+    override func viewWillDisappear(animated: Bool) {
+//        print("View Will Dissapear Called")
+//        
+//        storeNotificationsToBackEndless()
+//        
+//        // save array of notifications locally
+//        
+//        Notification.saveNotificationsToUserDefaults(oldNotifications)
+//        print("Notifications stored locally")
 
         
     }
@@ -143,26 +160,41 @@ class MapViewController : UIViewController , UIGestureRecognizerDelegate, MKMapV
         if (myPressPoint.state == UIGestureRecognizerState.Began){
         
             print("GESTURE Detected")
-            performSegueWithIdentifier("segueNewNot", sender: self)
+            toSave=false
+            
+            
+            let savingsInformationViewController = storyboard?.instantiateViewControllerWithIdentifier("segueNewNot1") as! NewNotificationViewController
+            savingsInformationViewController.delegate=self;
+            savingsInformationViewController.notification = newNote
+           
+            savingsInformationViewController.modalPresentationStyle = .Popover
+            if let popoverController = savingsInformationViewController.popoverPresentationController {
+                popoverController.sourceView = self.view
+        
+                popoverController.permittedArrowDirections = .Any
+                popoverController.delegate = self
+            }
+            presentViewController(savingsInformationViewController, animated: true, completion: nil)
+            
+           
             
             let touchLocation = myPressPoint.locationInView(mapView)
-            let locationCoordinate = mapView.convertPoint(touchLocation, toCoordinateFromView: mapView)
+             locationCoordinate = mapView.convertPoint(touchLocation, toCoordinateFromView: mapView)
             
-            //let not = Notification(Desc: "Press",Title: "Test",Rad: 2000,Act: true,Loc: locationCoordinate)
+                       print("Tapped at lat: \(locationCoordinate.latitude) long: \(locationCoordinate.longitude)")
             
-            print("Tapped at lat: \(locationCoordinate.latitude) long: \(locationCoordinate.longitude)")
+            newNote.lat = Double(locationCoordinate.latitude)
+            newNote.lon = Double(locationCoordinate.longitude)
             
             
             //New notification created save to notification list
-            let notification = Notification(Desc: "MyTest1", Title: "2", Rad: 2000, Act: true, Lat :Double(locationCoordinate.latitude),Lon: Double(locationCoordinate.longitude))
-            newNotifications.append(notification)
+            //let notification = Notification(Desc: "MyTest1", Title: "2", Rad: 2000, Act: true, Lat :Double(locationCoordinate.latitude),Lon: Double(locationCoordinate.longitude))
+           // newNotifications.append(newNote)
             
             // TODO: fix?
-            let circle = MKCircle(centerCoordinate: locationCoordinate, radius: Double(notification.notificationRadius))
-            mapView.addOverlay(circle)
-            mapView.delegate = self
-
             
+
+            toSave=true
             
         
         
@@ -170,6 +202,17 @@ class MapViewController : UIViewController , UIGestureRecognizerDelegate, MKMapV
                
         
     
+    }
+    
+    func saveNotification(notification: Notification) {
+        newNote = notification
+        newNotifications.append(newNote)
+        let circle = MKCircle(centerCoordinate: locationCoordinate, radius: Double(newNote.notificationRadius))
+        mapView.addOverlay(circle)
+        mapView.delegate = self
+        storeNotificationsToBackEndless()
+        print(newNote.notificationRadius)
+        
     }
     
     func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
@@ -183,4 +226,9 @@ class MapViewController : UIViewController , UIGestureRecognizerDelegate, MKMapV
         return MKOverlayRenderer(overlay: overlay)
     }
     
+    
+    
 }
+
+
+
