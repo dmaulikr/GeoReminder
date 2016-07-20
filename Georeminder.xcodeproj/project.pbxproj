@@ -27,6 +27,8 @@
 		847AC2951D3D55D300945705 /* logout-512.png in Resources */ = {isa = PBXBuildFile; fileRef = 847AC2921D3D55D300945705 /* logout-512.png */; };
 		847AC2961D3D55D300945705 /* images-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 847AC2931D3D55D300945705 /* images-1.png */; };
 		847AC2971D3D55D300945705 /* map.png in Resources */ = {isa = PBXBuildFile; fileRef = 847AC2941D3D55D300945705 /* map.png */; };
+		84C76F791D3F97C5009C36CC /* NotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C76F771D3F97C5009C36CC /* NotificationTableViewCell.swift */; };
+		84C76F7A1D3F97C5009C36CC /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C76F781D3F97C5009C36CC /* NotificationViewController.swift */; };
 		84CDE7CF1D3E640D00E987D8 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CDE7CE1D3E640D00E987D8 /* Notification.swift */; };
 		84D186271D33F21200528BA5 /* CoreLocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D186261D33F21200528BA5 /* CoreLocationController.swift */; };
 /* End PBXBuildFile section */
@@ -57,6 +59,8 @@
 		847AC2921D3D55D300945705 /* logout-512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logout-512.png"; sourceTree = "<group>"; };
 		847AC2931D3D55D300945705 /* images-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "images-1.png"; sourceTree = "<group>"; };
 		847AC2941D3D55D300945705 /* map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map.png; sourceTree = "<group>"; };
+		84C76F771D3F97C5009C36CC /* NotificationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationTableViewCell.swift; sourceTree = "<group>"; };
+		84C76F781D3F97C5009C36CC /* NotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		84CDE7CE1D3E640D00E987D8 /* Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		84D186261D33F21200528BA5 /* CoreLocationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreLocationController.swift; sourceTree = "<group>"; };
 		89CE8D6587271DB354CE7320 /* Pods-Georeminder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Georeminder.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Georeminder/Pods-Georeminder.debug.xcconfig"; sourceTree = "<group>"; };
@@ -113,6 +117,8 @@
 				8410EC7E1D2FE60A00FF8387 /* ViewController.swift */,
 				8410EC801D2FE60A00FF8387 /* Main.storyboard */,
 				84460B771D3EB31B00E2073B /* NewNotificationViewController.swift */,
+				84C76F771D3F97C5009C36CC /* NotificationTableViewCell.swift */,
+				84C76F781D3F97C5009C36CC /* NotificationViewController.swift */,
 				84498EF61D30177E007E2644 /* AppIcon.appiconset */,
 				8410EC861D2FE60A00FF8387 /* Assets.xcassets */,
 				84498EF41D301367007E2644 /* icon.png */,
@@ -296,10 +302,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84C76F791D3F97C5009C36CC /* NotificationTableViewCell.swift in Sources */,
 				847AC2851D3D48AE00945705 /* NotificationsViewController.swift in Sources */,
 				8410EC851D2FE60A00FF8387 /* Georeminder.xcdatamodeld in Sources */,
 				8410EC7F1D2FE60A00FF8387 /* ViewController.swift in Sources */,
 				84498EFA1D301DC7007E2644 /* RegistrationViewController.swift in Sources */,
+				84C76F7A1D3F97C5009C36CC /* NotificationViewController.swift in Sources */,
 				84460B781D3EB31B00E2073B /* NewNotificationViewController.swift in Sources */,
 				84D186271D33F21200528BA5 /* CoreLocationController.swift in Sources */,
 				847AC2811D3D488100945705 /* LogoutViewController.swift in Sources */,
