@@ -11,7 +11,7 @@ import CoreLocation
 
 class CoreLocationController: NSObject, CLLocationManagerDelegate  {
     var locationManager:CLLocationManager = CLLocationManager()
-    
+    var mapview :MapViewController?
     override init() {
         super.init()
         self.locationManager.delegate = self
@@ -51,6 +51,9 @@ class CoreLocationController: NSObject, CLLocationManagerDelegate  {
         // this method is called for every location update
         
         let location = locations.last! as CLLocation
+        if (mapview != nil){
+            mapview?.ZoomToLocation()
+        }
         
         print("didUpdateLocations:  \(location.coordinate.latitude), \(location.coordinate.longitude)")
         

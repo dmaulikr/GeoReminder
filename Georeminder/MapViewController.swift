@@ -32,20 +32,27 @@ class MapViewController : UIViewController , UIGestureRecognizerDelegate, MKMapV
     override func viewDidLoad() {
         newNote = Notification()
         locationController = appDel.coreLocationController!
+        locationController.mapview = self
+        
         super.viewDidLoad()
         print("MapViewController loaded")
         mapView.mapType = MKMapType.Hybrid
         mapView.zoomEnabled = true
+        mapView.showsUserLocation = true
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         mapView.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: "longPress:"))
    
     
         retriveNotificationsByOwnerID()
+        disableAllRegionsMonitored()
         debugViewAllTrackedLocations()
+        
 //        let regions = locationController.locationManager.monitoredRegions as! Set<CLCircularRegion>
 //        for r in regions{
 //            locationController.locationManager.stopMonitoringForRegion(r)
 //        }
+        
+        //ZoomToLocation()
         
     }
     
@@ -61,9 +68,39 @@ class MapViewController : UIViewController , UIGestureRecognizerDelegate, MKMapV
         }
     
     }*/
+    func disableAllRegionsMonitored(){
+        let regions = locationController.locationManager.monitoredRegions as! Set<CLCircularRegion>
+        for r in regions{
+            locationController.locationManager.stopMonitoringForRegion(r)
+        }
+    }
     
+    func reEnableRegionsForMonitoring(){
+        for i in oldNotifications{
+            if i.isActive{
+                registerNotificationForTracking(i)
+            }
+        }
+    }
     
-    
+    func ZoomToLocation(){
+        
+        guard let latitude:CLLocationDegrees = (locationController.locationManager.location?.coordinate.latitude)! else {return}
+            
+        
+        guard let longitude:CLLocationDegrees = (locationController.locationManager.location?.coordinate.longitude)! else {return}
+            
+        
+        let latDelta:CLLocationDegrees = 0.05
+        let lonDelta:CLLocationDegrees = 0.05
+        let span:MKCoordinateSpan = MKCoordinateSpanMake(latDelta, lonDelta)
+        let location:CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude, longitude)
+        let region:MKCoordinateRegion = MKCoordinateRegionMake(location, span)
+        
+        mapView.setRegion(region, animated: false)
+
+        
+    }
     
     func retriveNotificationsByOwnerID() {
         let n = backendless.userService.currentUser.getProperty("ownerId") as! String
@@ -86,7 +123,8 @@ class MapViewController : UIViewController , UIGestureRecognizerDelegate, MKMapV
                     
                 }
                 
-                
+                self.reEnableRegionsForMonitoring()
+            
                 //end block
             }, error: { (fault: Fault!) -> Void in
                 print("fServer reported an error: \(fault)")
