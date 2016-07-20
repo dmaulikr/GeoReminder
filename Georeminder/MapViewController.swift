@@ -102,14 +102,15 @@ class MapViewController : UIViewController , UIGestureRecognizerDelegate, MKMapV
                     print (ntf.lat)
                     if(ntf.isActive){
                         self.drawCirclesOnTheMap(ntf)
+                        self.registerNotificationForTracking(ntf)
                     }
                     
                     
                     self.oldNotifications.append(ntf)
                     
                 }
-                
-                self.reEnableRegionsForMonitoring()
+               
+               // self.reEnableRegionsForMonitoring()
                 
                 //end block
             }, error: { (fault: Fault!) -> Void in

@@ -78,6 +78,8 @@ class NotificationViewController: UITableViewController {
             registerNotificationForTracking(oldNotifications[sender.tag])
         }
         
+        storeNotificationsToBackEndless(oldNotifications[sender.tag])
+        
     }
     
     //register new notification
@@ -127,6 +129,26 @@ class NotificationViewController: UITableViewController {
         }
         
     }
+    
+    func storeNotificationsToBackEndless(note : Notification){
+        let dataStore = backendless.data.of(Notification.ofClass())
+        
+        
+            dataStore.save(
+                note,
+                response: { (result: AnyObject!) -> Void in
+                    let obj = result as! Notification
+                    print("Notification has been saved: \(obj.notificationTitle)")
+                },
+                error: { (fault: Fault!) -> Void in
+                    print("fServer reported an error: \(fault)")
+            })
+        
+        
+        
+    }
+
+
     
     
     
